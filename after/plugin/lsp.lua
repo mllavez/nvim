@@ -23,7 +23,6 @@ end)
 -- with the ones you have installed in your system
 ---
 require("mason").setup({})
-require("mason-lspconfig").setup()
 
 require("mason-lspconfig").setup ({
     ensure_installed = {'astro', 'tailwindcss', 'tsserver', 'eslint', 'lua_ls', 'rust_analyzer'},
