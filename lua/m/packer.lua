@@ -50,4 +50,6 @@ return require('packer').startup(function(use)
       },
   }
   use('tpope/vim-surround')
+  use('christoomey/vim-tmux-navigator')
+  use('wuelnerdotexe/vim-astro')
   end)
