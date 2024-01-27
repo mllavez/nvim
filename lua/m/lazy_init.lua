@@ -1,24 +1,18 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-  use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.5',
-	  -- or                            , branch = '0.1.x',
-	  requires = { {'nvim-lua/plenary.nvim'} }
-  }
-  use({ 'rose-pine/neovim', as = 'rose-pine',
-  config = function()
-	  vim.cmd('colorscheme rose-pine')
-  end
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
   })
-  use('nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'})
-  use('nvim-treesitter/playground')
-  use('ThePrimeagen/harpoon')
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup("m.lazy")
+  --[[
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
 
@@ -53,4 +47,5 @@ return require('packer').startup(function(use)
   use('christoomey/vim-tmux-navigator')
   use('wuelnerdotexe/vim-astro')
   use('github/copilot.vim')
-  end)
+})
+  ]]--
