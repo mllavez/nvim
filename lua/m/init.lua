@@ -11,6 +11,12 @@ local yank_group = augroup('HighlightYank', {})
 function R(name)
     require("pleanry.reload").reload_module(name)
 end
+
+vim.filetype.add({
+    extension = {
+        templ = 'templ',
+    }
+})
 autocmd('TextYankPost', {
     group = yank_group,
     pattern = '*',
@@ -24,8 +30,8 @@ autocmd('TextYankPost', {
 
 autocmd({"BufWritePre"}, {
     group = MGroup,
-pattern = "*",
-command = [[%s/\s\+$//e]],
+    pattern = "*",
+    command = [[%s/\s\+$//e]],
 })
 
 vim.g.netrw_browse_split = 0
